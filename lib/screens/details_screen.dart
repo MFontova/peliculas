@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -11,7 +12,9 @@ class DetailsScreen extends StatelessWidget {
         body: CustomScrollView(
       slivers: [
         _CustomAppBar(),
-        SliverList(delegate: SliverChildListDelegate([_PosterAndTitle()]))
+        SliverList(
+            delegate: SliverChildListDelegate(
+                [_PosterAndTitle(), _Overview(), _Overview(), CastingCards()]))
       ],
     ));
   }
@@ -31,6 +34,7 @@ class _CustomAppBar extends StatelessWidget {
         centerTitle: true,
         titlePadding: EdgeInsets.all(0),
         title: Container(
+          padding: EdgeInsets.only(bottom: 10),
           width: double.infinity,
           alignment: Alignment.bottomCenter,
           color: Colors.black26,
@@ -104,6 +108,22 @@ class _PosterAndTitle extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class _Overview extends StatelessWidget {
+  const _Overview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Text(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit efficitur sollicitudin. In volutpat vel magna in facilisis. Nam id velit et risus malesuada ultrices in ultricies tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In suscipit, enim ut mattis volutpat, eros massa commodo elit, in auctor ante mi eu enim. Aliquam erat volutpat. Sed egestas quam sit amet dolor convallis, accumsan consequat felis viverra. Cras ut orci et libero ultricies efficitur eu et velit. Ut pharetra ex congue fermentum euismod.',
+        textAlign: TextAlign.justify,
+        style: Theme.of(context).textTheme.subtitle1,
       ),
     );
   }
