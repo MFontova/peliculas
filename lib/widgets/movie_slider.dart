@@ -49,11 +49,11 @@ class _MovieSlider extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, 'details',
-                arguments: 'movie-details'),
+                arguments: 'movie-instance'),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
-                placeholder: AssetImage('assets/no-image.jgp'),
+                placeholder: AssetImage('assets/loading.gif'),
                 image: NetworkImage('https://via.placeholder.com/300x400'),
                 width: 130,
                 height: 190,
