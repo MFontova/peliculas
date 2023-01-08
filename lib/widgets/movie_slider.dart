@@ -10,9 +10,10 @@ class MovieSlider extends StatelessWidget {
       height: 250,
       color: Colors.red,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               'Populares',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -26,7 +27,6 @@ class MovieSlider extends StatelessWidget {
             ),
           )
         ],
-        crossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
   }
@@ -41,7 +41,7 @@ class _MovieSlider extends StatelessWidget {
       width: 130,
       height: 190,
       color: Colors.green,
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     );
   }
 }
