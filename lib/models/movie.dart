@@ -33,6 +33,13 @@ class Movie {
   double? voteAverage;
   int? voteCount;
 
+  get fullPosterImg {
+    if (this.posterPath != null)
+      return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
+
+    return 'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg';
+  }
+
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
   // String toJson() => json.encode(toMap());
