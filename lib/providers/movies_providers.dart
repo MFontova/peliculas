@@ -9,8 +9,8 @@ class MoviesProvider extends ChangeNotifier {
   String _baseUrl = 'api.themoviedb.org';
   String _language = 'es-ES';
 
-  List<Movie?>? onDisplayMovies = [];
-  List<Movie?>? popularMovies = [];
+  List<Movie> onDisplayMovies = [];
+  List<Movie> popularMovies = [];
 
   MoviesProvider() {
     print('MoviesProvider inicializado');
@@ -35,7 +35,7 @@ class MoviesProvider extends ChangeNotifier {
 
     final response = await http.get(url);
     final popularResponse = PopularResponse.fromJson(response.body);
-    popularMovies = [...?popularMovies, ...?popularResponse.results];
+    popularMovies = [...popularMovies, ...popularResponse.results];
     notifyListeners();
   }
 }

@@ -14,10 +14,10 @@ class PopularResponse {
     required this.totalResults,
   });
 
-  int? page;
-  List<Movie?>? results;
-  int? totalPages;
-  int? totalResults;
+  int page;
+  List<Movie> results;
+  int totalPages;
+  int totalResults;
 
   factory PopularResponse.fromJson(String str) =>
       PopularResponse.fromMap(json.decode(str));
@@ -26,7 +26,7 @@ class PopularResponse {
         page: json["page"],
         results: json["results"] == null
             ? []
-            : List<Movie?>.from(json["results"]!.map((x) => Movie.fromMap(x))),
+            : List<Movie>.from(json["results"]!.map((x) => Movie.fromMap(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );

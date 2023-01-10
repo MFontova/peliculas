@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/models/models.dart';
 
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+  const MovieSlider({super.key, required this.movies, this.title});
+
+  final List<Movie> movies;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +15,10 @@ class MovieSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Populares',
+              (title != null) ? title! : '',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
@@ -24,8 +28,9 @@ class MovieSlider extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => _MovieSlider(),
-              itemCount: 20,
+              itemBuilder: (context, index) =>
+                  _MoviePoster(movie: movies[index]),
+              itemCount: movies.length,
             ),
           )
         ],
@@ -34,8 +39,10 @@ class MovieSlider extends StatelessWidget {
   }
 }
 
-class _MovieSlider extends StatelessWidget {
-  const _MovieSlider({super.key});
+class _MoviePoster extends StatelessWidget {
+  const _MoviePoster({super.key, required this.movie});
+
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +61,7 @@ class _MovieSlider extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
                 placeholder: AssetImage('assets/loading.gif'),
-                image: NetworkImage('https://via.placeholder.com/300x400'),
+                image: NetworkImage(movie.fullPosterImg),
                 width: 130,
                 height: 190,
                 fit: BoxFit.cover,
@@ -65,7 +72,7 @@ class _MovieSlider extends StatelessWidget {
             height: 5,
           ),
           Text(
-            'Once upon a time in... Hollywood',
+            movie.title!,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
