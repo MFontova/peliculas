@@ -19,6 +19,7 @@ class DetailsScreen extends StatelessWidget {
         ),
         SliverList(
             delegate: SliverChildListDelegate([
+          _Rating(movie: movie),
           _PosterAndTitle(movie: movie),
           _Overview(movie: movie),
           CastingCards()
@@ -97,30 +98,35 @@ class _PosterAndTitle extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
-                Text(
-                  movie.originalTitle!,
-                  style: Theme.of(context).textTheme.subtitle1,
-                  overflow: TextOverflow.clip,
-                  maxLines: 2,
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(
+                    movie.originalTitle!,
+                    style: Theme.of(context).textTheme.subtitle1,
+                    overflow: TextOverflow.clip,
+                    maxLines: 2,
+                  ),
                 ),
                 // Text(DateUtils.dateOnly(movie.releaseDate!).toString()),
-                Text(DateFormat('dd-MM-yyyy').format(movie.releaseDate!)),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star_outline,
-                      size: 15,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      movie.voteAverage.toString(),
-                      style: Theme.of(context).textTheme.caption,
-                    )
-                  ],
-                )
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Icon(
+                          Icons.calendar_month_outlined,
+                          size: 20,
+                          color: Colors.indigo,
+                        ),
+                      ),
+                      Text(
+                        DateFormat('dd-MM-yyyy').format(movie.releaseDate!),
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           )
@@ -138,11 +144,65 @@ class _Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Text(
-        movie.overview!,
-        textAlign: TextAlign.justify,
-        style: Theme.of(context).textTheme.subtitle1,
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              'Sinopsis',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          Text(
+            movie.overview!,
+            textAlign: TextAlign.justify,
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Rating extends StatelessWidget {
+  const _Rating({super.key, required this.movie});
+
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 25),
+      color: Colors.indigo,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.star,
+              size: 50,
+              color: Colors.amber,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              movie.voteAverage.toString(),
+              style: TextStyle(fontSize: 50, color: Colors.white),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              '(' + movie.voteCount.toString() + ' votos)',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }

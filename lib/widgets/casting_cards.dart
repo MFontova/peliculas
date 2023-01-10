@@ -26,7 +26,7 @@ class _CastCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       width: 110,
-      height: 100,
+      height: 110,
       child: Column(
         children: [
           ClipRRect(
