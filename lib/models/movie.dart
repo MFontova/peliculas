@@ -34,8 +34,17 @@ class Movie {
   int? voteCount;
 
   get fullPosterImg {
-    if (this.posterPath != null)
-      return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
+    if (posterPath != null) {
+      return 'https://image.tmdb.org/t/p/w500${posterPath}';
+    }
+
+    return 'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg';
+  }
+
+  get fullBackDropPath {
+    if (backdropPath != null) {
+      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+    }
 
     return 'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg';
   }
