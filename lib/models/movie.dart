@@ -7,12 +7,12 @@ class Movie {
     this.genreIds,
     this.id,
     this.originalLanguage,
-    this.originalTitle,
+    required this.originalTitle,
     this.overview,
     this.popularity,
     this.posterPath,
     this.releaseDate,
-    this.title,
+    required this.title,
     this.video,
     this.voteAverage,
     this.voteCount,
@@ -23,12 +23,12 @@ class Movie {
   List<int?>? genreIds;
   int? id;
   String? originalLanguage;
-  String? originalTitle;
+  String originalTitle;
   String? overview;
   double? popularity;
   String? posterPath;
   DateTime? releaseDate;
-  String? title;
+  String title;
   bool? video;
   double? voteAverage;
   int? voteCount;
