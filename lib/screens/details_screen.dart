@@ -77,12 +77,15 @@ class _PosterAndTitle extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage(movie.fullPosterImg),
-              height: 150,
+          Hero(
+            tag: movie.heroId!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: AssetImage('assets/no-image.jpg'),
+                image: NetworkImage(movie.fullPosterImg),
+                height: 150,
+              ),
             ),
           ),
           SizedBox(
@@ -101,7 +104,7 @@ class _PosterAndTitle extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    movie.originalTitle!,
+                    movie.originalTitle,
                     style: Theme.of(context).textTheme.subtitle1,
                     overflow: TextOverflow.clip,
                     maxLines: 2,
@@ -121,7 +124,8 @@ class _PosterAndTitle extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateFormat('dd-MM-yyyy').format(movie.releaseDate!),
+                        DateFormat('dd-MM-yyyy')
+                            .format(DateTime.parse(movie.releaseDate!)),
                         style: TextStyle(fontSize: 15),
                       ),
                     ],
